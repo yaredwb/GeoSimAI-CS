@@ -18,15 +18,33 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveBackground 10s linear infinite;
+            background: linear-gradient(45deg, #3498db, #8e44ad, #2ecc71);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -1;
         }
-        @keyframes moveBackground {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .wave {
+            position: absolute;
+            opacity: 0.3;
+            width: 200vw;
+            height: 200vh;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 43%;
+            animation: drift linear infinite;
+        }
+        .wave:nth-child(1) { animation-duration: 20s; }
+        .wave:nth-child(2) { animation-duration: 25s; }
+        .wave:nth-child(3) { animation-duration: 30s; }
+        .wave:nth-child(4) { animation-duration: 35s; }
+        .wave:nth-child(5) { animation-duration: 40s; }
+        @keyframes drift {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
         .content {
             position: relative;
@@ -35,11 +53,10 @@
             justify-content: center;
             align-items: center;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
         }
         .container {
             text-align: center;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -77,7 +94,13 @@
     </style>
 </head>
 <body>
-    <div class="background"></div>
+    <div class="background">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
     <div class="content">
         <div class="container">
             <h1>Coming Soon</h1>
