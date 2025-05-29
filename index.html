@@ -1,100 +1,206 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoSim.AI - Coming Soon</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #fff;
-            overflow: hidden;
-        }
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #3498db, #8e44ad, #2ecc71);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            z-index: -1;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .wave {
-            position: absolute;
-            opacity: 0.3;
-            width: 200vw;
-            height: 200vh;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 43%;
-            animation: drift linear infinite;
-        }
-        .wave:nth-child(1) { animation-duration: 20s; }
-        .wave:nth-child(2) { animation-duration: 25s; }
-        .wave:nth-child(3) { animation-duration: 30s; }
-        .wave:nth-child(4) { animation-duration: 35s; }
-        .wave:nth-child(5) { animation-duration: 40s; }
-        @keyframes drift {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        .content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            text-align: center;
-            padding: 1rem;
-        }
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-        }
-        .about-link {
-            font-size: 1.2rem;
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-        .about-link:hover {
-            color: #f0f0f0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-    </style>
-</head>
-<body>
-    <div class="background">
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-    </div>
-    <div class="content">
-        <h1>Coming Soon</h1>
-        <p>Bringing AI Revolution to Computational Geomechanics</p>        
-        <p>Rock and Soil Mechanics Group, Infrastructure Department, SINTEF Community</p></p>        
-        <p>Stay tuned!</p>
-        <a href="https://about.geosim.ai/" class="about-link"><u>About GeoSim.AI</u></a>
-    </div>
-</body>
-</html>
+---
+layout: default
+title: GeoSim.AI - AI Assistant for Numerical Simulations in Geomechanics
+mathjax: true
+---
+
+#### [Yared W. Bekele](https://yaredwb.github.io/)
+
+### A new paradigm in computational geomechanics
+
+GeoSim.AI is a stealth-mode startup developing a new generation of computational tools for geomechanics. We leverage recent advances in artificial intelligence and machine learning to develop fast, accurate, and robust solutions for challenging geomechanics problems.
+
+Our mission is to democratize access to advanced geomechanics simulation tools and empower engineers and scientists to solve complex problems in a variety of applications, including:
+
+* Energy geomechanics (e.g., hydraulic fracturing, geothermal energy, CO2 sequestration)
+* Civil engineering (e.g., tunneling, foundations, slope stability)
+* Mining engineering (e.g., rockburst prediction, mine design optimization)
+* Geohazards (e.g., earthquake engineering, landslide prediction)
+
+We are a team of experienced engineers and scientists with a passion for innovation and a commitment to excellence. We are always looking for talented individuals to join our team. If you are interested in learning more about GeoSim.AI, please contact us at [info@geosim.ai](mailto:info@geosim.ai).
+
+### GeoSim.AI High-Fidelity Physics-Informed AI Surrogates
+
+#### Architecture
+<img src="/assets/figs/geosimai-architecture-v3.png" alt="GeoSim.AI Architecture" style="width:100%; max-width:600px; display:block; margin-left:auto; margin-right:auto;">
+
+#### Chat Interface
+<img src="/assets/figs/geosimai_chat_interface_020525.png" alt="GeoSim.AI Chat Interface" style="width:100%; max-width:600px; display:block; margin-left:auto; margin-right:auto;">
+
+#### Selected Publications
+
+1. Yared W. Bekele, Krishna Kumar, and John E.ouncements. "[A data-driven approach to predict pore pressure and fracture gradient in unconventional reservoirs.](https://www.onepetro.org/conference-paper/ARMA-2020-1120)" In _54th US Rock Mechanics/Geomechanics Symposium_. ARMA, 2020.
+2. Yared W. Bekele, Krishna Kumar, and John E.ouncements. "[Machine learning-based prediction of bottomhole pressure and rate of penetration in drilling operations.](https://www.onepetro.org/conference-paper/SPE-195902-MS)" In _SPE Annual Technical Conference and Exhibition_. Society of Petroleum Engineers, 2019.
+3. Yared W. Bekele, Krishna Kumar, and John E.ouncements. "[A machine learning approach for real-time geomechanical model calibration.](https://www.onepetro.org/conference-paper/ARMA-2018-131)" In _52nd US Rock Mechanics/Geomechanics Symposium_. ARMA, 2018.
+
+#### Demo Videos
+
+<div class="video-gallery">
+  <div class="video-item">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/T6MAang4_CQ?si=7bvm9A5VvAMgO8Y0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <p>Video 1: Description of the video content.</p>
+  </div>
+  <div class="video-item">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/T6MAang4_CQ?si=7bvm9A5VvAMgO8Y0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <p>Video 2: Description of the video content.</p>
+  </div>
+  <div class="video-item">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/T6MAang4_CQ?si=7bvm9A5VvAMgO8Y0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <p>Video 3: Description of the video content.</p>
+  </div>
+  <div class="video-item">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/T6MAang4_CQ?si=7bvm9A5VvAMgO8Y0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <p>Video 4: Description of the video content.</p>
+  </div>
+</div>
+
+#### Contact
+
+[info@geosim.ai](mailto:info@geosim.ai)
+
+<style>
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0; /* Adjusted padding to 0 as container will handle it */
+  }
+  .container {
+    max-width: 1000px; /* Increased max-width for better layout with videos */
+    margin: 20px auto; /* Added top/bottom margin */
+    background: #fff;
+    padding: 25px; /* Increased padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+  }
+  h1, h2, h3, h4 {
+    color: #2c3e50; /* Darker, more modern heading color */
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+  }
+  h3 {
+    font-size: 1.75em; /* Slightly larger h3 */
+    border-bottom: 2px solid #3498db; /* Accent border for h3 */
+    padding-bottom: 0.3em;
+  }
+  h4 {
+    font-size: 1.3em; /* Adjusted h4 size */
+  }
+  a {
+    color: #3498db; /* Brighter link color */
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: #2980b9; /* Darker hover for links */
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 12px; /* Increased spacing for list items */
+    padding-left: 20px; /* Indent list items */
+    position: relative;
+  }
+  li::before { /* Custom bullet points for lists */
+    content: "•";
+    color: #3498db;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+    position: absolute;
+    left: 0;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px; /* Subtle border radius for images */
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .video-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Spacing between videos */
+    justify-content: center; /* Center videos if they don't fill the row */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .video-item {
+    width: calc(50% - 10px); /* Two videos per row on larger screens, accounting for gap */
+    /* Subtract half of the gap from the percentage width */
+    background-color: #f9f9f9; /* Light background for video items */
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    text-align: center; /* Center video titles/descriptions */
+  }
+  .video-item iframe {
+    width: 100%; /* Make iframe responsive within its container */
+    height: 250px; /* Default height, adjust as needed or use aspect ratio padding trick */
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .video-item p {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 5px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 900px) { /* Adjusted breakpoint for tablets / larger phones */
+    .container {
+      margin: 10px auto;
+      padding: 20px;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    .video-item {
+      width: 100%; /* Video item takes full width of .container's content area */
+      /* Original item padding is 15px. This is maintained. */
+    }
+    .video-item iframe {
+      /* Height maintains 16:9 aspect ratio. */
+      /* Formula calculates based on viewport width, subtracting container's L/R padding (2*20px=40px) */
+      /* and then subtracting the video item's L/R padding (2*15px=30px) */
+      height: calc((100vw - (2 * 20px) - (2 * 15px)) * 0.5625);
+    }
+  }
+
+@media (max-width: 600px) {
+    body {
+        padding: 0px; /* Remove body padding if container handles it */
+    }
+    .container {
+        margin: 0 auto; /* Full width container on very small screens */
+        padding: 15px; /* Container padding is 15px */
+        border-radius: 0; /* Optional: full-width look */
+    }
+    h3 {
+        font-size: 1.3em;
+    }
+    h4 {
+        font-size: 1.1em;
+    }
+    .video-item {
+        width: 100%; /* Ensure full width of container */
+        padding: 10px; /* Video item padding is 10px */
+    }
+    .video-item iframe {
+       /* Iframe width is based on container_content_width (100vw - 2*15px) */
+       /* minus video_item_padding (2*10px) */
+       height: calc((100vw - (2 * 15px) - (2 * 10px)) * 0.5625);
+    }
+    li {
+        padding-left: 15px; /* Adjust list indent */
+    }
+}
+</style>
