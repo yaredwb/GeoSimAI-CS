@@ -3,98 +3,1609 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoSim.AI - Coming Soon</title>
+    <title>GeoSim.AI - AI Assistants for Numerical Simulations in Geomechanics</title>
+    <meta name="description" content="GeoSim.AI revolutionizes geotechnical engineering with AI assistants that translate natural language instructions into precise numerical simulation commands.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Signika:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #fff;
-            overflow: hidden;
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0f172a 0%, #1e3a8a 25%, #3b82f6 50%, #06b6d4 75%, #8b5cf6 100%);
+            --secondary-gradient: linear-gradient(135deg, #ec4899 0%, #f59e0b 50%, #10b981 100%);
+            --tech-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 25%, #06b6d4 50%, #8b5cf6 75%, #ec4899 100%);
+            --dark-gradient: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #334155 100%);
+            --emerald-gradient: linear-gradient(135deg, #059669 0%, #10b981 50%, #22c55e 100%);
+            --purple-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #c084fc 100%);
+            --orange-gradient: linear-gradient(135deg, #f59e0b 0%, #fb923c 50%, #fbbf24 100%);
+            --hero-gradient: linear-gradient(135deg, #0f172a 0%, #1e3a8a 10%, #3b82f6 20%, #06b6d4 30%, #8b5cf6 40%, #ec4899 50%, #f59e0b 60%, #10b981 70%, #22c55e 80%, #3b82f6 90%, #1e3a8a 100%);
+            --rainbow-gradient: linear-gradient(135deg, #ef4444 0%, #f59e0b 14%, #eab308 28%, #22c55e 42%, #06b6d4 56%, #3b82f6 70%, #8b5cf6 84%, #ec4899 100%);
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-gradient-1: linear-gradient(135deg, #fef2f2 0%, #fef7ff 20%, #f0f9ff 40%, #ecfdf5 60%, #fffbeb 80%, #fdf4ff 100%);
+            --bg-gradient-2: linear-gradient(135deg, #fdf4ff 0%, #eff6ff 16%, #f0fdf4 32%, #fef3c7 48%, #fef2f2 64%, #f0fdfa 80%, #faf5ff 100%);
+            --bg-gradient-3: linear-gradient(135deg, #f0fdfa 0%, #eff6ff 14%, #fef7ff 28%, #fef3c7 42%, #fef2f2 56%, #f0fdf4 70%, #fdf4ff 84%, #f0f9ff 100%);
+            
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            
+            --accent-blue: #1e3a8a;
+            --accent-purple: #8b5cf6;
+            --accent-emerald: #10b981;
+            --accent-navy: #0f172a;
+            
+            --border-radius: 16px;
+            --border-radius-sm: 8px;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        .background {
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Modern Header - More Seamless Integration */
+        header {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #3498db, #8e44ad, #2ecc71);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            z-index: -1;
+            z-index: 1000;
+            background: transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: none;
+            backdrop-filter: none;
+            padding: 24px 0;
         }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 1px 40px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            padding: 16px 0;
         }
-        .wave {
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Signika', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        header.scrolled .logo {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            text-shadow: none;
+        }
+
+        .nav-center {
             position: absolute;
-            opacity: 0.3;
-            width: 200vw;
-            height: 200vh;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 43%;
-            animation: drift linear infinite;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        .wave:nth-child(1) { animation-duration: 20s; }
-        .wave:nth-child(2) { animation-duration: 25s; }
-        .wave:nth-child(3) { animation-duration: 30s; }
-        .wave:nth-child(4) { animation-duration: 35s; }
-        .wave:nth-child(5) { animation-duration: 40s; }
-        @keyframes drift {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
         }
-        .content {
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 8px 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        header.scrolled .nav-links a {
+            color: var(--text-secondary);
+            text-shadow: none;
+        }
+
+        .nav-links a:hover {
+            color: rgba(255, 255, 255, 1);
+            transform: translateY(-1px);
+        }
+
+        header.scrolled .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        header.scrolled .nav-links a::after {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Launch App Button - positioned at top right */
+        .launch-app-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .launch-app-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white !important;
+        }
+
+        .launch-app-btn::after {
+            display: none;
+        }
+
+        header.scrolled .launch-app-btn {
+            background: var(--accent-blue);
+            color: white !important;
+            border: 1px solid var(--accent-blue);
+        }
+
+        header.scrolled .launch-app-btn:hover {
+            background: #1e40af;
+            border-color: #1e40af;
+            color: white !important;
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .mobile-menu-toggle {
+            color: var(--text-secondary);
+        }
+
+        .mobile-menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        header.scrolled .mobile-menu-toggle:hover {
+            background: rgba(59, 130, 246, 0.08);
+        }
+
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
+                flex-direction: column;
+                padding: 24px;
+                gap: 16px;
+                border-radius: 0 0 16px 16px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-top: none;
+            }
+
+            .nav-center.active {
+                display: flex;
+            }
+
+            .nav-center a {
+                color: var(--text-secondary);
+                text-shadow: none;
+                width: 100%;
+                text-align: center;
+                padding: 14px 0;
+            }
+
+            .launch-app-btn {
+                margin-left: 0;
+                margin-top: 8px;
+                background: var(--accent-blue);
+                border-color: var(--accent-blue);
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            header {
+                padding: 20px 0;
+            }
+
+            header.scrolled {
+                padding: 16px 0;
+            }
+        }
+
+        /* Modern Hero Section - Finite Element Simulation Background */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 25%, #3b82f6 50%, #06b6d4 75%, #8b5cf6 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                /* Create realistic triangular finite element mesh */
+                linear-gradient(30deg, transparent 48%, rgba(255,255,255,0.2) 49%, rgba(255,255,255,0.2) 51%, transparent 52%),
+                linear-gradient(90deg, transparent 48%, rgba(255,255,255,0.2) 49%, rgba(255,255,255,0.2) 51%, transparent 52%),
+                linear-gradient(150deg, transparent 48%, rgba(255,255,255,0.2) 49%, rgba(255,255,255,0.2) 51%, transparent 52%),
+                /* Additional mesh lines for denser triangulation */
+                linear-gradient(0deg, transparent 0%, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%, transparent 100%),
+                linear-gradient(60deg, transparent 0%, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%, transparent 100%),
+                linear-gradient(120deg, transparent 0%, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%, transparent 100%);
+            background-size: 
+                40px 70px,   /* 30deg lines */
+                50px 50px,   /* 90deg lines */
+                40px 70px,   /* 150deg lines */
+                60px 60px,   /* 0deg lines */
+                60px 60px,   /* 60deg lines */
+                60px 60px;   /* 120deg lines */
+            opacity: 0.6;
+            /* Remove animation - mesh should be static */
+        }
+
+        /* Finite Element Stress Contour Overlay - Only this animates */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                /* High stress concentrations (red/orange) */
+                radial-gradient(ellipse 300px 200px at 15% 25%, rgba(239, 68, 68, 0.20) 0%, rgba(245, 158, 11, 0.15) 40%, transparent 70%),
+                radial-gradient(ellipse 250px 150px at 85% 75%, rgba(239, 68, 68, 0.18) 0%, rgba(251, 146, 60, 0.12) 35%, transparent 65%),
+                
+                /* Medium stress areas (yellow/green) */
+                radial-gradient(ellipse 400px 250px at 60% 40%, rgba(234, 179, 8, 0.15) 0%, rgba(34, 197, 94, 0.12) 50%, transparent 80%),
+                radial-gradient(ellipse 350px 200px at 25% 80%, rgba(132, 204, 22, 0.12) 0%, rgba(16, 185, 129, 0.10) 45%, transparent 75%),
+                
+                /* Low stress areas (blue/purple) */
+                radial-gradient(ellipse 500px 300px at 80% 20%, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.12) 60%, transparent 90%),
+                radial-gradient(ellipse 450px 280px at 40% 90%, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.10) 55%, transparent 85%),
+                
+                /* Transition zones */
+                radial-gradient(ellipse 200px 120px at 70% 60%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 180px 100px at 30% 30%, rgba(236, 72, 153, 0.08) 0%, transparent 55%);
+            animation: contourFlow 40s ease-in-out infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes contourFlow {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.9;
+            }
+            25% { 
+                transform: scale(1.05) rotate(1deg);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: scale(1.1) rotate(2deg);
+                opacity: 0.7;
+            }
+            75% { 
+                transform: scale(1.05) rotate(1deg);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { 
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Signika', sans-serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 400;
+            margin-bottom: 32px;
+            opacity: 0.9;
+            letter-spacing: -0.01em;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 48px;
+            opacity: 0.85;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--accent-blue);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Modern Sections */
+        section {
+            padding: 120px 0;
+            position: relative;
+            background-size: 400% 400%;
+            animation: subtleGradientShift 20s ease-in-out infinite;
+        }
+
+        @keyframes subtleGradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Section specific styles */
+        #home {
+            /* Hero section specific styles */
+            position: relative;
+            overflow: hidden;
+        }
+
+        #home .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #home h1 {
+            font-family: 'Signika', sans-serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #home .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 400;
+            margin-bottom: 32px;
+            opacity: 0.9;
+            letter-spacing: -0.01em;
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 48px;
+            opacity: 0.85;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-bottom: 64px;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(75, 172, 254, 0.05) 0%, rgba(0, 242, 254, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, #ffffff 0%, #f0fdff 100%);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 24px;
+            background: var(--tech-gradient);
+            background-size: 200% 200%;
+            animation: gradientShift 6s ease-in-out infinite;
+            color: white;
             position: relative;
             z-index: 1;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .benefit-item {
+            background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            border-left: 4px solid transparent;
+            background-clip: padding-box;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .benefit-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .benefit-item:hover::after {
+            opacity: 1;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .benefit-item:nth-child(even)::before {
+            background: var(--emerald-gradient);
+        }
+
+        .benefit-item:nth-child(3n)::before {
+            background: var(--purple-gradient);
+        }
+
+        /* Demo Gallery */
+        .demo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .demo-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .demo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .demo-card:hover::before {
+            opacity: 1;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .demo-placeholder {
+            background: var(--tech-gradient);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease-in-out infinite;
+            height: 220px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100%;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-placeholder::before {
+            content: '▶';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.7;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .demo-content {
+            padding: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Software Grid */
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .software-item {
+            background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: var(--border-radius);
+            padding: 32px;
             text-align: center;
-            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
         }
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+        .software-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, rgba(59, 130, 246, 0.03) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        p {
+
+        .software-item:hover::before {
+            opacity: 1;
+        }
+
+        .software-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
+            margin-bottom: 16px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .faq-item:hover::before,
+        .faq-item.active::before {
+            opacity: 1;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-question {
+            padding: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-secondary);
+        }
+
+        .faq-question::after {
+            content: '+';
             font-size: 1.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            color: var(--accent-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 24px 24px;
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Contact Form */
+        .contact-form {
             max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 48px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
         }
-        .about-link {
-            font-size: 1.2rem;
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+
+        .form-group {
+            margin-bottom: 24px;
         }
-        .about-link:hover {
-            color: #f0f0f0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius-sm);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gradient);
+            color: white;
+            text-align: center;
+            padding: 64px 0;
+        }
+
+        .sintef-credit {
+            margin-top: 24px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-family: 'Signika', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 64px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .glass-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            background: var(--tech-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.available {
+            background: var(--emerald-gradient);
+            color: white;
+        }
+
+        .status-badge.development {
+            background: var(--orange-gradient);
+            color: white;
+        }
+
+        .status-badge.internal {
+            background: var(--purple-gradient);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            header {
+                padding: 20px 0;
+            }
+
+            header.scrolled {
+                padding: 16px 0;
+            }
+        }
+
+        /* Section Backgrounds */
+        .bg-light {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%, #f8fafc 100%);
+            background-size: 400% 400%;
+            animation: subtleGradientShift 25s ease-in-out infinite;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 25%, #faf5ff 50%, #f3e8ff 75%, #fef7ff 100%);
+            background-size: 400% 400%;
+            animation: subtleGradientShift 30s ease-in-out infinite;
+        }
+
+        #features {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 25%, #f0fdf4 50%, #ccfbf1 75%, #f0fdfa 100%);
+            background-size: 400% 400%;
+            animation: subtleGradientShift 35s ease-in-out infinite;
+        }
+
+        #about {
+            background: linear-gradient(135deg, #fefbff 0%, #f3f4f6 25%, #f9fafb 50%, #f3f4f6 75%, #fefbff 100%);
+            background-size: 400% 400%;
+            animation: subtleGradientShift 28s ease-in-out infinite;
+        }
+
+        #software {
+            background: linear-gradient(135deg, #fdfcfe 0%, #f0f9ff 25%, #f8fafc 50%, #f0f9ff 75%, #fdfcfe 100%);
+            background-size: 400% 400%;
+            animation: subtleGradientShift 32s ease-in-out infinite;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="background">
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-    </div>
-    <div class="content">
-        <h1>Coming Soon</h1>
-        <p>Bringing AI Revolution to Computational Geomechanics</p>        
-        <p>Rock and Soil Mechanics Group, Infrastructure Department, SINTEF Community</p></p>        
-        <p>Stay tuned!</p>
-        <a href="https://about.geosim.ai/" class="about-link"><u>About GeoSim.AI</u></a>
-    </div>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="#home" class="logo">GeoSim.AI</a>
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#demos">Demos</a></li>
+                    <li><a href="#software">Software</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <a href="#launch" class="launch-app-btn">Launch App</a>
+            <button class="mobile-menu-toggle">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>GeoSim.AI</h1>
+                <div class="tagline">AI Assistants for Numerical Simulations in Geomechanics</div>
+                <p>Revolutionizing geotechnical engineering by translating natural language instructions and image inputs into precise technical commands and scripts for complex numerical simulations.</p>
+                <div class="cta-buttons">
+                    <a href="#demos" class="btn btn-primary">See Demos</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">About GeoSim.AI</h2>
+            <p class="section-subtitle fade-in">Advanced AI technology meets geomechanical expertise to create the next generation of simulation tools.</p>
+            <div class="about-grid">
+                <div class="glass-card fade-in">
+                    <h3>The Technology</h3>
+                    <p>GeoSim.AI leverages state-of-the-art Large Language Models (LLMs) with Retrieval Augmented Generation (RAG) to create an intelligent interface for geomechanical simulations. Our system combines advanced AI with comprehensive domain knowledge.</p>
+                </div>
+                <div class="glass-card fade-in">
+                    <h3>How It Works</h3>
+                    <p>Our architecture includes an LLM core, comprehensive knowledge base, Data & Tools repository, and natural language interface. Users input instructions in plain English or upload images for automatic translation.</p>
+                </div>
+                <div class="glass-card fade-in">
+                    <h3>The Problem We Solve</h3>
+                    <p>Traditional geomechanical simulation software has a steep learning curve requiring significant time and expertise. GeoSim.AI reduces barriers to entry, allowing focus on physics rather than software complexity.</p>
+                </div>
+                <div class="glass-card fade-in">
+                    <h3>Development Status</h3>
+                    <p>Currently under active development with continuously expanding AI assistants. Open-source integrations are available, while commercial software features are in development and testing phases.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title fade-in">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💬</div>
+                    <h3>Natural Language & Image Input</h3>
+                    <p>Accept natural language instructions, images, and sketches for intuitive simulation setup through a user-friendly chat interface.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Automated Script Generation</h3>
+                    <p>Translate inputs into accurate simulation parameters and generate complex scripts for your target software automatically.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Software Compatibility</h3>
+                    <p>Works with multiple simulation platforms including ADONIS, HYRCAN, FLAC2D/3D, and PLAXIS2D/3D with user-selectable preferences.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🧠</div>
+                    <h3>LLM-Powered Core</h3>
+                    <p>Utilizes cutting-edge Large Language Models designed to be LLM-agnostic with Retrieval Augmented Generation for domain expertise.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📚</div>
+                    <h3>Comprehensive Knowledge Base</h3>
+                    <p>Contains theoretical background, numerical methods, simulation examples, best practices, and software-specific syntax knowledge.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Data & Tools Repository</h3>
+                    <p>Includes typical datasets, custom tools for calculations, result extraction, plotting, and insight generation with Function Calling integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="bg-gradient">
+        <div class="container">
+            <h2 class="section-title fade-in">Key Benefits</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item fade-in">
+                    <h4>Enhanced Productivity</h4>
+                    <p>Streamline simulation setup and result interpretation, dramatically reducing time-to-insight for geomechanical analysis projects.</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <h4>Increased Accessibility</h4>
+                    <p>Make advanced simulation tools usable for a broader range of users, including non-experts, students, and newcomers to the field.</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <h4>Improved Efficiency</h4>
+                    <p>Reduce time spent learning software-specific syntax and setup procedures, allowing faster project completion.</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <h4>Focus on Problem Solving</h4>
+                    <p>Enable users to concentrate on the geomechanical aspects and physics rather than software operation details.</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <h4>Innovation Acceleration</h4>
+                    <p>Speed up the pace of discovery in geomechanical research and practical applications across the industry.</p>
+                </div>
+                <div class="benefit-item fade-in">
+                    <h4>Expert Enhancement</h4>
+                    <p>Augment existing expertise rather than replace it, similar to how CAD tools enhanced engineering design capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases/Demonstrations Section -->
+    <section id="demos">
+        <div class="container">
+            <h2 class="section-title fade-in">Use Cases & Demonstrations</h2>
+            <div class="demo-gallery">
+                <div class="demo-card fade-in">
+                    <div class="demo-placeholder">General Demo Video</div>
+                    <div class="demo-content">
+                        <h3>General GeoSim.AI Overview</h3>
+                        <p>See how GeoSim.AI transforms natural language instructions into precise simulation commands across multiple software platforms.</p>
+                    </div>
+                </div>
+                <div class="demo-card fade-in">
+                    <div class="demo-placeholder">ADONIS Text Input Demo</div>
+                    <div class="demo-content">
+                        <h3>ADONIS Text Interface</h3>
+                        <p>Watch as text-based instructions are converted into ADONIS simulation scripts for slope stability analysis.</p>
+                    </div>
+                </div>
+                <div class="demo-card fade-in">
+                    <div class="demo-placeholder">ADONIS Image Input Demo</div>
+                    <div class="demo-content">
+                        <h3>ADONIS Image Processing</h3>
+                        <p>Discover how sketches and images are interpreted and translated into simulation parameters for ADONIS.</p>
+                    </div>
+                </div>
+                <div class="demo-card fade-in">
+                    <div class="demo-placeholder">HYRCAN Text Input Demo</div>
+                    <div class="demo-content">
+                        <h3>HYRCAN Text Interface</h3>
+                        <p>Experience natural language processing for HYRCAN hydrological simulations in slope stability contexts.</p>
+                    </div>
+                </div>
+                <div class="demo-card fade-in">
+                    <div class="demo-placeholder">HYRCAN Image Input Demo</div>
+                    <div class="demo-content">
+                        <h3>HYRCAN Image Analysis</h3>
+                        <p>See how visual inputs are processed and converted into HYRCAN simulation configurations.</p>
+                    </div>
+                </div>
+                <div class="demo-card fade-in">
+                    <div class="demo-placeholder">Slope Stability Analysis</div>
+                    <div class="demo-content">
+                        <h3>Slope Stability Focus</h3>
+                        <p>Explore our specialized slope stability analysis agent and its comprehensive capabilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Software Section -->
+    <section id="software" class="bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">Supported Software</h2>
+            <div class="software-grid">
+                <div class="software-item fade-in">
+                    <h3>ADONIS</h3>
+                    <p>Open-source slope stability analysis</p>
+                    <span class="status-badge available">Available</span>
+                </div>
+                <div class="software-item fade-in">
+                    <h3>HYRCAN</h3>
+                    <p>Hydrological modeling for slope stability</p>
+                    <span class="status-badge available">Available</span>
+                </div>
+                <div class="software-item fade-in">
+                    <h3>FLAC2D</h3>
+                    <p>2D continuum modeling</p>
+                    <span class="status-badge development">In Development</span>
+                </div>
+                <div class="software-item fade-in">
+                    <h3>FLAC3D</h3>
+                    <p>3D continuum modeling</p>
+                    <span class="status-badge development">In Development</span>
+                </div>
+                <div class="software-item fade-in">
+                    <h3>PLAXIS2D</h3>
+                    <p>2D geotechnical finite element analysis</p>
+                    <span class="status-badge internal">Internal Use</span>
+                </div>
+                <div class="software-item fade-in">
+                    <h3>PLAXIS3D</h3>
+                    <p>3D geotechnical finite element analysis</p>
+                    <span class="status-badge internal">Internal Use</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Is GeoSim.AI just another black box?
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, GeoSim.AI is designed as a transparent tool that enhances productivity for experts and provides access to complex modeling for non-experts. It's best used by those with foundational understanding of geomechanics, serving as an intelligent interface rather than a replacement for knowledge.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Will this erode existing expertise?
+                    </div>
+                    <div class="faq-answer">
+                        <p>GeoSim.AI is positioned as a tool that augments, not replaces, foundational knowledge. Similar to how CAD tools enhanced engineering design or calculators improved mathematical work, GeoSim.AI amplifies human expertise rather than diminishing it.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What is the current development status?
+                    </div>
+                    <div class="faq-answer">
+                        <p>GeoSim.AI is under active development with continuously expanding AI assistants. Open-source software integrations (ADONIS, HYRCAN) are available, while commercial software features and some Data & Tools repository connections are in testing and development phases.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Who is behind GeoSim.AI?
+                    </div>
+                    <div class="faq-answer">
+                        <p>GeoSim.AI is developed by Yared W. Bekele and the Rock and Soil Mechanics Group at SINTEF Community in Trondheim, Norway. SINTEF is one of Europe's largest independent research organizations.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How can I access GeoSim.AI?
+                    </div>
+                    <div class="faq-answer">
+                        <p>GeoSim.AI is currently in development. Please contact us through the form below to learn about collaboration opportunities, stay updated on development progress, or inquire about early access programs.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What makes GeoSim.AI different from other AI tools?
+                    </div>
+                    <div class="faq-answer">
+                        <p>GeoSim.AI is specifically designed for geomechanical simulations with deep domain knowledge, comprehensive software integration, and specialized features like image input processing. It combines LLM technology with geotechnical expertise and practical simulation workflows.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gradient">
+        <div class="container">
+            <h2 class="section-title fade-in">Contact & Get Involved</h2>
+            <div class="contact-form fade-in">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organization</label>
+                        <input type="text" id="organization" name="organization">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">Interest</label>
+                        <select id="interest" name="interest">
+                            <option value="">Select your interest</option>
+                            <option value="collaboration">Research Collaboration</option>
+                            <option value="demo">Request Demo</option>
+                            <option value="updates">Stay Updated</option>
+                            <option value="licensing">Licensing Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your interest in GeoSim.AI..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GeoSim.AI - All rights reserved</p>
+            <div class="sintef-credit">
+                A project by the Rock and Soil Mechanics Group<br>
+                Infrastructure Department, SINTEF Community, Trondheim, Norway
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Modern FAQ Toggle with smooth animations
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Enhanced smooth scrolling and header behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('header');
+            const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            let lastScrollY = window.scrollY;
+            let ticking = false;
+
+            // Seamless header scroll behavior
+            function updateHeader() {
+                const scrollY = window.scrollY;
+                
+                if (scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                lastScrollY = scrollY;
+                ticking = false;
+            }
+
+            function requestHeaderUpdate() {
+                if (!ticking) {
+                    requestAnimationFrame(updateHeader);
+                    ticking = true;
+                }
+            }
+
+            // Optimized scroll listener
+            window.addEventListener('scroll', requestHeaderUpdate, { passive: true });
+
+            // Enhanced smooth scrolling
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        // Update active state
+                        navLinks.forEach(navLink => navLink.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Initialize header state
+            updateHeader();
+
+            // Intersection Observer for active nav states
+            const sections = document.querySelectorAll('section[id]');
+            const observerOptions = {
+                rootMargin: `-${header.offsetHeight + 50}px 0px -50% 0px`,
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+
+            // Fade-in animation observer
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                fadeObserver.observe(el);
+            });
+        });
+
+        // Form submission handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('#contact form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const button = e.target.querySelector('button[type="submit"]');
+                    const originalText = button.textContent;
+                    button.textContent = 'Sending...';
+                    button.disabled = true;
+                    
+                    setTimeout(() => {
+                        button.textContent = 'Message Sent!';
+                        button.style.background = 'var(--emerald-gradient)';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.disabled = false;
+                            button.style.background = '';
+                            e.target.reset();
+                        }, 2000);
+                    }, 1000);
+                });
+            }
+        });
+
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            
+            if (mobileToggle && navCenter) {
+                mobileToggle.addEventListener('click', function() {
+                    navCenter.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking on a link
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navCenter.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
