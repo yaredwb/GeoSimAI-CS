@@ -248,9 +248,7 @@
 
         header.scrolled .mobile-menu-toggle:hover {
             background: rgba(59, 130, 246, 0.08);
-        }
-
-        @media (max-width: 768px) {
+        }        @media (max-width: 768px) {
             .nav-center {
                 display: none;
                 position: absolute;
@@ -267,18 +265,38 @@
                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 border-top: none;
+                transform: translateY(-10px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
             }
 
             .nav-center.active {
                 display: flex;
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-center .nav-links {
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
             }
 
             .nav-center a {
-                color: var(--text-secondary);
+                color: var(--text-secondary) !important;
                 text-shadow: none;
                 width: 100%;
                 text-align: center;
                 padding: 14px 0;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .nav-center a:hover {
+                background: rgba(59, 130, 246, 0.08);
+                color: var(--accent-blue) !important;
             }
 
             .launch-app-btn {
@@ -298,6 +316,10 @@
 
             header.scrolled {
                 padding: 16px 0;
+            }
+
+            .nav-links {
+                display: flex;
             }
         }
 
@@ -829,9 +851,7 @@
         .faq-answer p {
             color: var(--text-secondary);
             line-height: 1.7;
-        }
-
-        /* Contact Form */
+        }        /* Contact Form */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
@@ -875,6 +895,34 @@
         .form-group textarea {
             height: 120px;
             resize: vertical;
+        }
+
+        /* Contact form submit button */
+        .contact-form .btn {
+            width: 100%;
+            padding: 16px 32px;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 16px;
+        }
+
+        .contact-form .btn:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.2);
+        }
+
+        .contact-form .btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         /* Footer */
@@ -992,14 +1040,8 @@
         .status-badge.internal {
             background: var(--purple-gradient);
             color: white;
-        }
-
-        /* Responsive Design */
+        }        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
             .hero {
                 padding: 120px 0 80px;
             }
@@ -1027,6 +1069,31 @@
 
             header.scrolled {
                 padding: 16px 0;
+            }
+
+            .contact-form {
+                padding: 32px 20px;
+                margin: 0 16px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .demo-gallery {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .software-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
 
@@ -1369,10 +1436,9 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="bg-gradient">        <div class="container">
+    </section>    <!-- Contact Section -->
+    <section id="contact" class="bg-gradient">
+        <div class="container">
             <h2 class="section-title fade-in">Contact & Get Involved</h2>
             <div class="contact-form fade-in">
                 <form id="contact-form">
@@ -1407,10 +1473,11 @@
                 </form>
                 <div class="contact-info" style="margin-top: 2rem; text-align: center; opacity: 0.8;">
                     <p>Or contact us directly at: <a href="mailto:yared.bekele@sintef.no" style="color: var(--primary-color); text-decoration: none;">yared.bekele@sintef.no</a></p>
-                </div>
-            </div>
+                </div>            </div>
         </div>
-    </section>    <!-- Footer -->
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2025 GeoSim.AI - All rights reserved</p>
