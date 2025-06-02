@@ -307,98 +307,59 @@
             display: flex;
             align-items: center;
             position: relative;
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 25%, #3b82f6 50%, #06b6d4 75%, #8b5cf6 100%);
+            background: #1e293b;
             overflow: hidden;
         }
 
-        .hero::before {
+        /* Subtle FE mesh overlay using SVG */
+        .hero-fe-mesh {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.2; /* lighter mesh */
+        }
+
+        /* Add styling for mesh lines to resemble an FE mesh */
+        .hero-fe-mesh polyline {
+            stroke: rgba(255, 255, 255, 0.3); /* more subtle mesh lines */
+            stroke-dasharray: 8 4;
+            stroke-width: 0.8;
+        }
+
+        /* Radial heatmap-style contour to simulate FE temperature/stress field */
+        .hero-fe-contour {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            /* simplified stress map gradient */
+            background: radial-gradient(circle at center, #3b82f6 0%, #0ea5e9 50%, #ef4444 100%);
+            filter: blur(20px) contrast(1) saturate(1.1);
+            opacity: 0.5; /* lower opacity for subtlety */
+        }
+
+        /* Contour ring overlay to simulate isolines */
+        .hero-fe-contour::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                /* Create realistic triangular finite element mesh */
-                linear-gradient(30deg, transparent 48%, rgba(255,255,255,0.2) 49%, rgba(255,255,255,0.2) 51%, transparent 52%),
-                linear-gradient(90deg, transparent 48%, rgba(255,255,255,0.2) 49%, rgba(255,255,255,0.2) 51%, transparent 52%),
-                linear-gradient(150deg, transparent 48%, rgba(255,255,255,0.2) 49%, rgba(255,255,255,0.2) 51%, transparent 52%),
-                /* Additional mesh lines for denser triangulation */
-                linear-gradient(0deg, transparent 0%, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%, transparent 100%),
-                linear-gradient(60deg, transparent 0%, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%, transparent 100%),
-                linear-gradient(120deg, transparent 0%, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%, transparent 100%);
-            background-size: 
-                40px 70px,   /* 30deg lines */
-                50px 50px,   /* 90deg lines */
-                40px 70px,   /* 150deg lines */
-                60px 60px,   /* 0deg lines */
-                60px 60px,   /* 60deg lines */
-                60px 60px;   /* 120deg lines */
-            opacity: 0.6;
-            /* Remove animation - mesh should be static */
-        }
-
-        /* Finite Element Stress Contour Overlay - Only this animates */
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                /* High stress concentrations (red/orange) */
-                radial-gradient(ellipse 300px 200px at 15% 25%, rgba(239, 68, 68, 0.20) 0%, rgba(245, 158, 11, 0.15) 40%, transparent 70%),
-                radial-gradient(ellipse 250px 150px at 85% 75%, rgba(239, 68, 68, 0.18) 0%, rgba(251, 146, 60, 0.12) 35%, transparent 65%),
-                
-                /* Medium stress areas (yellow/green) */
-                radial-gradient(ellipse 400px 250px at 60% 40%, rgba(234, 179, 8, 0.15) 0%, rgba(34, 197, 94, 0.12) 50%, transparent 80%),
-                radial-gradient(ellipse 350px 200px at 25% 80%, rgba(132, 204, 22, 0.12) 0%, rgba(16, 185, 129, 0.10) 45%, transparent 75%),
-                
-                /* Low stress areas (blue/purple) */
-                radial-gradient(ellipse 500px 300px at 80% 20%, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.12) 60%, transparent 90%),
-                radial-gradient(ellipse 450px 280px at 40% 90%, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.10) 55%, transparent 85%),
-                
-                /* Transition zones */
-                radial-gradient(ellipse 200px 120px at 70% 60%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
-                radial-gradient(ellipse 180px 100px at 30% 30%, rgba(236, 72, 153, 0.08) 0%, transparent 55%);
-            animation: contourFlow 40s ease-in-out infinite;
-            opacity: 0.9;
-        }
-
-        @keyframes contourFlow {
-            0%, 100% { 
-                transform: scale(1) rotate(0deg);
-                opacity: 0.9;
-            }
-            25% { 
-                transform: scale(1.05) rotate(1deg);
-                opacity: 0.8;
-            }
-            50% { 
-                transform: scale(1.1) rotate(2deg);
-                opacity: 0.7;
-            }
-            75% { 
-                transform: scale(1.05) rotate(1deg);
-                opacity: 0.8;
-            }
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { 
-                opacity: 0.7;
-                transform: scale(1);
-            }
-            50% { 
-                opacity: 1;
-                transform: scale(1.1);
-            }
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at center,
+                transparent 20%, rgba(255,255,255,0.05) 21%, transparent 22%,
+                transparent 40%, rgba(255,255,255,0.05) 41%, transparent 42%,
+                transparent 60%, rgba(255,255,255,0.05) 61%, transparent 62%,
+                transparent 80%, rgba(255,255,255,0.05) 81%, transparent 82%);
+            filter: blur(8px);
         }
 
         .hero-content {
@@ -1137,6 +1098,20 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-fe-contour"></div>
+        <svg class="hero-fe-mesh" viewBox="0 0 1440 900" preserveAspectRatio="none">
+            <g stroke="#fff" stroke-width="0.7" opacity="0.5">
+                <!-- Sparse triangular mesh lines -->
+                <polyline points="0,900 1440,0" />
+                <polyline points="0,0 1440,900" />
+                <polyline points="0,450 1440,450" />
+                <polyline points="720,0 720,900" />
+                <polyline points="0,0 0,900" />
+                <polyline points="1440,0 1440,900" />
+                <polyline points="0,0 1440,0" />
+                <polyline points="0,900 1440,900" />
+            </g>
+        </svg>
         <div class="container">
             <div class="hero-content fade-in">
                 <h1>GeoSim.AI</h1>
@@ -1317,13 +1292,13 @@
                 </div>
                 <div class="software-item fade-in">
                     <h3>FLAC2D</h3>
-                    <p>2D continuum modeling</p>
-                    <span class="status-badge development">In Development</span>
+                    <p>Geomechanical software for simulating in 2D</p>
+                    <span class="status-badge internal">Internal Use</span>
                 </div>
                 <div class="software-item fade-in">
                     <h3>FLAC3D</h3>
-                    <p>3D continuum modeling</p>
-                    <span class="status-badge development">In Development</span>
+                    <p>Continuum Modeling for Geomechanics in 3D</p>
+                    <span class="status-badge internal">Internal Use</span>
                 </div>
                 <div class="software-item fade-in">
                     <h3>PLAXIS2D</h3>
@@ -1397,11 +1372,10 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="bg-gradient">
-        <div class="container">
+    <section id="contact" class="bg-gradient">        <div class="container">
             <h2 class="section-title fade-in">Contact & Get Involved</h2>
             <div class="contact-form fade-in">
-                <form>
+                <form id="contact-form">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -1429,19 +1403,21 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" placeholder="Tell us about your interest in GeoSim.AI..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-primary">Send Email</button>
                 </form>
+                <div class="contact-info" style="margin-top: 2rem; text-align: center; opacity: 0.8;">
+                    <p>Or contact us directly at: <a href="mailto:yared.bekele@sintef.no" style="color: var(--primary-color); text-decoration: none;">yared.bekele@sintef.no</a></p>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
+    </section>    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2025 GeoSim.AI - All rights reserved</p>
             <div class="sintef-credit">
                 A project by the Rock and Soil Mechanics Group<br>
-                Infrastructure Department, SINTEF Community, Trondheim, Norway
+                Infrastructure Department, SINTEF Community, Trondheim, Norway<br>
+                <strong>Contact: <a href="mailto:yared.bekele@sintef.no" style="color: #fff; text-decoration: none;">Yared Bekele</a></strong>
             </div>
         </div>
     </footer>
@@ -1560,28 +1536,54 @@
             document.querySelectorAll('.fade-in').forEach(el => {
                 fadeObserver.observe(el);
             });
-        });
-
-        // Form submission handling
+        });        // Form submission handling
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('#contact form');
+            const form = document.querySelector('#contact-form');
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
+                    // Get form data
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const organization = document.getElementById('organization').value;
+                    const interest = document.getElementById('interest').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // Create email content
+                    const subject = `GeoSim.AI Inquiry - ${interest || 'General'} from ${name}`;
+                    const body = `Dear Yared,
+
+I am interested in GeoSim.AI and would like to get in touch regarding:
+
+Name: ${name}
+Email: ${email}
+Organization: ${organization || 'Not specified'}
+Interest: ${interest || 'Not specified'}
+
+Message:
+${message || 'No additional message provided.'}
+
+Best regards,
+${name}`;
+
+                    // Create mailto link
+                    const mailtoLink = `mailto:yared.bekele@sintef.no?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    
+                    // Open email client
+                    window.location.href = mailtoLink;
+                    
+                    // Visual feedback
                     const button = e.target.querySelector('button[type="submit"]');
                     const originalText = button.textContent;
-                    button.textContent = 'Sending...';
+                    button.textContent = 'Opening Email Client...';
                     button.disabled = true;
                     
                     setTimeout(() => {
-                        button.textContent = 'Message Sent!';
-                        button.style.background = 'var(--emerald-gradient)';
+                        button.textContent = 'Email Opened!';
                         setTimeout(() => {
                             button.textContent = originalText;
                             button.disabled = false;
-                            button.style.background = '';
-                            e.target.reset();
                         }, 2000);
                     }, 1000);
                 });
