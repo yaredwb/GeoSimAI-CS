@@ -674,6 +674,84 @@
             gap: 32px;
         }
 
+        .video-gallery {
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .video-gallery h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .video-scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .video-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .video-item {
+            scroll-snap-align: center;
+            flex: 0 0 100%;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 24px;
+        }
+
+        .video-item iframe {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border-radius: var(--border-radius-sm);
+        }
+
+        .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(15, 23, 42, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .scroll-arrow:hover {
+            background: rgba(15, 23, 42, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .scroll-arrow.left {
+            left: 16px;
+        }
+
+        .scroll-arrow.right {
+            right: 16px;
+        }
+
         .demo-card {
             background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
             border-radius: var(--border-radius);
@@ -1086,6 +1164,10 @@
                 gap: 24px;
             }
 
+            .video-scroll-container {
+                grid-auto-columns: 90%;
+            }
+
             .software-grid {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                 gap: 20px;
@@ -1294,50 +1376,36 @@
     <!-- Use Cases/Demonstrations Section -->
     <section id="demos">
         <div class="container">
-            <h2 class="section-title fade-in">Use Cases & Demonstrations</h2>
-            <div class="demo-gallery">
-                <div class="demo-card fade-in">
-                    <div class="demo-placeholder">General Demo Video</div>
-                    <div class="demo-content">
-                        <h3>General GeoSim.AI Overview</h3>
-                        <p>See how GeoSim.AI transforms natural language instructions into precise simulation commands across multiple software platforms.</p>
+            <h2 class="section-title fade-in">Demos</h2>
+            <p class="section-subtitle fade-in">See GeoSim.AI in action. Watch how our AI agents interpret prompts and generate simulations.</p>
+
+            <div class="video-gallery fade-in">
+                <div class="video-scroll-container">
+                    <div class="video-item">
+                        <h4>Demo of GeoSim.AI Interface</h4>
+                        <iframe src="https://www.youtube-nocookie.com/embed/_LprVXHBT-I?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=_LprVXHBT-I&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-item">
+                        <h4>ADONIS AI Agent: Text Prompt</h4>
+                        <iframe src="https://www.youtube-nocookie.com/embed/Te3kfmKfaSA?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=Te3kfmKfaSA&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-item">
+                        <h4>ADONIS AI Agent: Image + Text Prompt</h4>
+                        <iframe src="https://www.youtube-nocookie.com/embed/Uu2_jwBv4iw?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=Uu2_jwBv4iw&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-item">
+                        <h4>HYRCAN AI Agent: Text Prompt</h4>
+                        <iframe src="https://www.youtube-nocookie.com/embed/NVIivwbvIMg?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=NVIivwbvIMg&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-item">
+                        <h4>HYRCAN AI Agent: Image + Text Prompt</h4>
+                        <iframe src="https://www.youtube-nocookie.com/embed/GPeWuJPa5Eg?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=GPeWuJPa5Eg&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
-                <div class="demo-card fade-in">
-                    <div class="demo-placeholder">ADONIS Text Input Demo</div>
-                    <div class="demo-content">
-                        <h3>ADONIS Text Interface</h3>
-                        <p>Watch as text-based instructions are converted into ADONIS simulation scripts for slope stability analysis.</p>
-                    </div>
-                </div>
-                <div class="demo-card fade-in">
-                    <div class="demo-placeholder">ADONIS Image Input Demo</div>
-                    <div class="demo-content">
-                        <h3>ADONIS Image Processing</h3>
-                        <p>Discover how sketches and images are interpreted and translated into simulation parameters for ADONIS.</p>
-                    </div>
-                </div>
-                <div class="demo-card fade-in">
-                    <div class="demo-placeholder">HYRCAN Text Input Demo</div>
-                    <div class="demo-content">
-                        <h3>HYRCAN Text Interface</h3>
-                        <p>Experience natural language processing for HYRCAN hydrological simulations in slope stability contexts.</p>
-                    </div>
-                </div>
-                <div class="demo-card fade-in">
-                    <div class="demo-placeholder">HYRCAN Image Input Demo</div>
-                    <div class="demo-content">
-                        <h3>HYRCAN Image Analysis</h3>
-                        <p>See how visual inputs are processed and converted into HYRCAN simulation configurations.</p>
-                    </div>
-                </div>
-                <div class="demo-card fade-in">
-                    <div class="demo-placeholder">Slope Stability Analysis</div>
-                    <div class="demo-content">
-                        <h3>Slope Stability Focus</h3>
-                        <p>Explore our specialized slope stability analysis agent and its comprehensive capabilities.</p>
-                    </div>
-                </div>
+                <button class="scroll-arrow left" aria-label="Previous Demo">‹</button>
+                <button class="scroll-arrow right" aria-label="Next Demo">›</button>
             </div>
         </div>
     </section>
@@ -1672,6 +1740,25 @@ ${name}`;
                     link.addEventListener('click', function() {
                         navCenter.classList.remove('active');
                     });
+                });
+            }
+        });
+
+        // Demo video scroller
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.video-scroll-container');
+            const leftArrow = document.querySelector('.scroll-arrow.left');
+            const rightArrow = document.querySelector('.scroll-arrow.right');
+
+            if (container && leftArrow && rightArrow) {
+                const scrollAmount = () => container.querySelector('.video-item').offsetWidth;
+
+                leftArrow.addEventListener('click', () => {
+                    container.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+                });
+
+                rightArrow.addEventListener('click', () => {
+                    container.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
                 });
             }
         });
