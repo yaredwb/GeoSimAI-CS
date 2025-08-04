@@ -851,7 +851,7 @@
             box-shadow: var(--shadow-md);
         }
 
-        /* FAQ Section */
+        /* FAQ Section - Simplified for Robustness */
         .faq-container {
             max-width: 800px;
             margin: 0 auto;
@@ -862,28 +862,9 @@
             margin-bottom: 16px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-sm);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: box-shadow 0.3s ease;
         }
-
-        .faq-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .faq-item:hover::before,
-        .faq-item.active::before {
-            opacity: 1;
-        }
-
+        
         .faq-item:hover {
             box-shadow: var(--shadow-md);
         }
@@ -896,18 +877,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
         }
-
+        
         .faq-question:hover {
-            background: var(--bg-secondary);
+            background: #f8fafc;
         }
 
         .faq-question::after {
             content: '+';
             font-size: 1.5rem;
             color: var(--accent-blue);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease-in-out;
+            transform-origin: center;
         }
 
         .faq-item.active .faq-question::after {
@@ -915,21 +897,21 @@
         }
 
         .faq-answer {
-            padding: 0 24px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
+            display: none;
+            padding: 0 24px 24px;
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
 
         .faq-item.active .faq-answer {
-            padding: 0 24px 24px;
-            max-height: 200px;
+            display: block;
         }
 
         .faq-answer p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }        /* Contact Form */
+            margin: 0;
+        }
+
+        /* Contact Form */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
@@ -1455,7 +1437,7 @@
             <h2 class="section-title fade-in">Frequently Asked Questions</h2>
             <div class="faq-container">
                 <div class="faq-item fade-in">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
                         Is GeoSim.AI just another black box?
                     </div>
                     <div class="faq-answer">
@@ -1463,7 +1445,7 @@
                     </div>
                 </div>
                 <div class="faq-item fade-in">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
                         Will this erode existing expertise?
                     </div>
                     <div class="faq-answer">
@@ -1471,7 +1453,7 @@
                     </div>
                 </div>
                 <div class="faq-item fade-in">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
                         What is the current development status?
                     </div>
                     <div class="faq-answer">
@@ -1479,7 +1461,7 @@
                     </div>
                 </div>
                 <div class="faq-item fade-in">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
                         Who is behind GeoSim.AI?
                     </div>
                     <div class="faq-answer">
@@ -1487,7 +1469,7 @@
                     </div>
                 </div>
                 <div class="faq-item fade-in">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
                         How can I access GeoSim.AI?
                     </div>
                     <div class="faq-answer">
@@ -1495,7 +1477,7 @@
                     </div>
                 </div>
                 <div class="faq-item fade-in">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
                         What makes GeoSim.AI different from other AI tools?
                     </div>
                     <div class="faq-answer">
@@ -1529,7 +1511,7 @@
                             <option value="collaboration">Research Collaboration</option>
                             <option value="demo">Request Demo</option>
                             <option value="updates">Stay Updated</option>
-                            <option value="licensing">Licensing Inquiry</option>
+                            <!--option value="licensing">Licensing Inquiry</option-->
                             <option value="other">Other</option>
                         </select>
                     </div>
@@ -1558,39 +1540,43 @@
     </footer>
 
     <script>
-        // Modern FAQ Toggle with smooth animations
-        function toggleFAQ(element) {
-            const faqItem = element.parentElement;
-            const isActive = faqItem.classList.contains('active');
-            
-            // Close all FAQ items
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Open clicked item if it wasn't active
-            if (!isActive) {
-                faqItem.classList.add('active');
-            }
-        }
-
-        // Enhanced smooth scrolling and header behavior
+        // Consolidated DOMContentLoaded event listener
         document.addEventListener('DOMContentLoaded', function() {
+            // FAQ Toggle Functionality
+            function toggleFAQ(element) {
+                const faqItem = element.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQ items to create an accordion effect
+                document.querySelectorAll('.faq-item.active').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Toggle the active state of the clicked item
+                faqItem.classList.toggle('active');
+            }
+
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.addEventListener('click', function() {
+                    toggleFAQ(this);
+                });
+            });
+
+            // Enhanced smooth scrolling and header behavior
             const header = document.querySelector('header');
             const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
             let lastScrollY = window.scrollY;
             let ticking = false;
 
-            // Seamless header scroll behavior
             function updateHeader() {
                 const scrollY = window.scrollY;
-                
                 if (scrollY > 50) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
-                
                 lastScrollY = scrollY;
                 ticking = false;
             }
@@ -1602,34 +1588,31 @@
                 }
             }
 
-            // Optimized scroll listener
             window.addEventListener('scroll', requestHeaderUpdate, { passive: true });
 
-            // Enhanced smooth scrolling
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
                     const targetId = this.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
-                    
                     if (targetElement) {
                         const headerHeight = header.offsetHeight;
                         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-                        
                         window.scrollTo({
                             top: targetPosition,
                             behavior: 'smooth'
                         });
-
-                        // Update active state
                         navLinks.forEach(navLink => navLink.classList.remove('active'));
                         this.classList.add('active');
+                        // Close mobile menu on link click
+                        const navCenter = document.querySelector('.nav-center');
+                        if (navCenter.classList.contains('active')) {
+                            navCenter.classList.remove('active');
+                        }
                     }
                 });
             });
 
-            // Initialize header state
             updateHeader();
 
             // Intersection Observer for active nav states
@@ -1667,53 +1650,28 @@
                 rootMargin: '0px 0px -50px 0px'
             });
 
-            // Observe all fade-in elements
             document.querySelectorAll('.fade-in').forEach(el => {
                 fadeObserver.observe(el);
             });
-        });        // Form submission handling
-        document.addEventListener('DOMContentLoaded', function() {
+
+            // Form submission handling
             const form = document.querySelector('#contact-form');
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    
-                    // Get form data
                     const name = document.getElementById('name').value;
                     const email = document.getElementById('email').value;
                     const organization = document.getElementById('organization').value;
                     const interest = document.getElementById('interest').value;
                     const message = document.getElementById('message').value;
-                    
-                    // Create email content
                     const subject = `GeoSim.AI Inquiry - ${interest || 'General'} from ${name}`;
-                    const body = `Dear Yared,
-
-I am interested in GeoSim.AI and would like to get in touch regarding:
-
-Name: ${name}
-Email: ${email}
-Organization: ${organization || 'Not specified'}
-Interest: ${interest || 'Not specified'}
-
-Message:
-${message || 'No additional message provided.'}
-
-Best regards,
-${name}`;
-
-                    // Create mailto link
+                    const body = `Dear Yared,\n\nI am interested in GeoSim.AI and would like to get in touch regarding:\n\nName: ${name}\nEmail: ${email}\nOrganization: ${organization || 'Not specified'}\nInterest: ${interest || 'Not specified'}\n\nMessage:\n${message || 'No additional message provided.'}\n\nBest regards,\n${name}`;
                     const mailtoLink = `mailto:yared.bekele@sintef.no?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                    
-                    // Open email client
                     window.location.href = mailtoLink;
-                    
-                    // Visual feedback
                     const button = e.target.querySelector('button[type="submit"]');
                     const originalText = button.textContent;
                     button.textContent = 'Opening Email Client...';
                     button.disabled = true;
-                    
                     setTimeout(() => {
                         button.textContent = 'Email Opened!';
                         setTimeout(() => {
@@ -1723,42 +1681,27 @@ ${name}`;
                     }, 1000);
                 });
             }
-        });
 
-        // Mobile menu toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle functionality
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
             const navCenter = document.querySelector('.nav-center');
-            
             if (mobileToggle && navCenter) {
                 mobileToggle.addEventListener('click', function() {
                     navCenter.classList.toggle('active');
                 });
-
-                // Close mobile menu when clicking on a link
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        navCenter.classList.remove('active');
-                    });
-                });
             }
-        });
 
-        // Demo video scroller
-        document.addEventListener('DOMContentLoaded', function() {
+            // Demo video scroller
             const container = document.querySelector('.video-scroll-container');
             const leftArrow = document.querySelector('.scroll-arrow.left');
             const rightArrow = document.querySelector('.scroll-arrow.right');
-
             if (container && leftArrow && rightArrow) {
-                const scrollAmount = () => container.querySelector('.video-item').offsetWidth;
-
+                const scrollAmount = container.clientWidth;
                 leftArrow.addEventListener('click', () => {
-                    container.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+                    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
                 });
-
                 rightArrow.addEventListener('click', () => {
-                    container.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
                 });
             }
         });
