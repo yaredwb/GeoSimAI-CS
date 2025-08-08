@@ -95,17 +95,34 @@
 
         .logo {
             font-family: 'Signika', sans-serif;
-            font-size: 28px;
+            font-size: 2.1rem;
             font-weight: 700;
             color: white;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex; /* ensure flex for icon + text */
+            align-items: center;  /* vertical centering */
+            gap: 0.25em;          /* spacing between icon and text */
+            line-height: 1;       /* remove extra line height */
             filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
             position: relative;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
             flex-shrink: 0;
+        }
+
+        .logo-svg {
+            transition: stroke 0.3s;
+            display: block;       /* avoid inline SVG baseline quirks */
+        }
+
+        .logo span {
+            display: inline-block; /* prevent line box artifacts */
+            line-height: 1;        /* align to icon vertically */
+        }
+
+        header.scrolled .logo-svg {
+            stroke: url(#logo-gradient);
         }
 
         .logo:hover {
@@ -1209,7 +1226,30 @@
     <!-- Header -->
     <header id="header">
         <nav class="container">
-            <a href="#home" class="logo">GeoSim.AI</a>
+            <a href="#home" class="logo">
+                <svg class="logo-svg"
+                    viewBox="0 0 24 24"
+                    width="1.15em"
+                    height="1.15em"
+                    fill="none"
+                    stroke="white"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#3b82f6" />
+                            <stop offset="100%" stop-color="#8b5cf6" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M5 9c2 1 4 1 6 0s4-1 8 0"/>
+                    <path d="M5 12c2 1 4 1 6 0s4-1 8 0"/>
+                    <path d="M5 15c2 1 4 1 6 0s4-1 8 0"/>
+                </svg>
+                <span>GeoSim.AI</span>
+            </a>
             <div class="nav-center">
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
