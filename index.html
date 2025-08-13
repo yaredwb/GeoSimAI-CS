@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoSim.AI - AI Assistants for Numerical Simulations in Geomechanics</title>
     <meta name="description" content="GeoSim.AI revolutionizes geotechnical engineering with AI assistants that translate natural language instructions into precise numerical simulation commands.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://geosim.ai/">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://geosim.ai/">
+    <meta property="og:title" content="GeoSim.AI — AI Assistants for Geomechanics Simulations">
+    <meta property="og:description" content="GeoSim.AI translates natural language and image inputs into precise commands for numerical simulations in geomechanics.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="GeoSim.AI — AI Assistants for Geomechanics">
+    <meta name="twitter:description" content="Natural language to simulation scripts for ADONIS, HYRCAN, FLAC, PLAXIS and more.">
+    <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml" sizes="any">
+    <link rel="shortcut icon" href="favicon.svg?v=4" type="image/svg+xml" sizes="any">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#06b6d4">
+    <meta name="msapplication-TileColor" content="#0f172a">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Signika:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -46,6 +63,39 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        /* Accessibility: Skip link for keyboard users */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .skip-link:focus {
+            position: fixed;
+            left: 16px;
+            top: 16px;
+            width: auto;
+            height: auto;
+            padding: 8px 12px;
+            background: #0f172a;
+            color: #fff;
+            border-radius: 8px;
+            z-index: 2000;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+        }
+
+        /* Focus styles */
+        .nav-links a:focus-visible,
+        .launch-app-btn:focus-visible,
+        .mobile-menu-toggle:focus-visible,
+        .btn:focus-visible {
+            outline: 3px solid #8b5cf6;
+            outline-offset: 2px;
+            border-radius: 8px;
         }
 
         body {
@@ -253,6 +303,7 @@
             padding: 8px;
             border-radius: 8px;
             transition: all 0.3s ease;
+            line-height: 1;
         }
 
         header.scrolled .mobile-menu-toggle {
@@ -733,6 +784,7 @@
             height: auto;
             aspect-ratio: 16 / 9;
             border-radius: var(--border-radius-sm);
+            background: #000;
         }
 
         .scroll-arrow {
@@ -1220,12 +1272,23 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Respect reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <a href="#home" class="skip-link">Skip to content</a>
     <!-- Header -->
     <header id="header">
-        <nav class="container">
+        <nav class="container" aria-label="Primary">
             <a href="#home" class="logo">
                 <svg class="logo-svg"
                     viewBox="0 0 24 24"
@@ -1236,6 +1299,7 @@
                     stroke-width="1.75"
                     stroke-linecap="round"
                     stroke-linejoin="round"
+                    aria-hidden="true"
                 >
                     <defs>
                         <linearGradient id="logo-gradient" x1="0" y1="0" x2="1" y2="0">
@@ -1250,7 +1314,7 @@
                 </svg>
                 <span>GeoSim.AI</span>
             </a>
-            <div class="nav-center">
+            <div class="nav-center" id="primary-navigation">
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -1263,14 +1327,14 @@
                 </ul>
             </div>
             <a href="https://app.geosim.ai/" class="launch-app-btn" target="_blank" rel="noopener noreferrer">Launch App</a>
-            <button class="mobile-menu-toggle">☰</button>
+            <button class="mobile-menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation">☰</button>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-fe-contour"></div>
-        <svg class="hero-fe-mesh" viewBox="0 0 1440 900" preserveAspectRatio="none">
+        <div class="hero-fe-contour" aria-hidden="true"></div>
+        <svg class="hero-fe-mesh" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
             <g stroke="#fff" stroke-width="0.7" opacity="0.5">
                 <!-- Sparse triangular mesh lines -->
                 <polyline points="0,900 1440,0" />
@@ -1405,24 +1469,24 @@
                 <div class="video-scroll-container">
                     <div class="video-item">
                         <h4>Demo of GeoSim.AI Interface</h4>
-                        <iframe src="https://www.youtube-nocookie.com/embed/_LprVXHBT-I?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=_LprVXHBT-I&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe title="Demo of GeoSim.AI Interface" loading="lazy" src="https://www.youtube-nocookie.com/embed/_LprVXHBT-I?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=_LprVXHBT-I&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="video-item">
                         <h4>ADONIS AI Agent: Text Prompt</h4>
-                        <iframe src="https://www.youtube-nocookie.com/embed/Te3kfmKfaSA?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=Te3kfmKfaSA&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe title="ADONIS AI Agent: Text Prompt" loading="lazy" src="https://www.youtube-nocookie.com/embed/Te3kfmKfaSA?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=Te3kfmKfaSA&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="video-item">
                         <h4>ADONIS AI Agent: Image + Text Prompt</h4>
-                        <iframe src="https://www.youtube-nocookie.com/embed/Uu2_jwBv4iw?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=Uu2_jwBv4iw&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe title="ADONIS AI Agent: Image + Text Prompt" loading="lazy" src="https://www.youtube-nocookie.com/embed/Uu2_jwBv4iw?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=Uu2_jwBv4iw&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="video-item">
                         <h4>HYRCAN AI Agent: Text Prompt</h4>
-                        <iframe src="https://www.youtube-nocookie.com/embed/NVIivwbvIMg?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=NVIivwbvIMg&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        <iframe title="HYRCAN AI Agent: Text Prompt" loading="lazy" src="https://www.youtube-nocookie.com/embed/NVIivwbvIMg?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=NVIivwbvIMg&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-item">
                         <h4>HYRCAN AI Agent: Image + Text Prompt</h4>
-                        <iframe src="https://www.youtube-nocookie.com/embed/GPeWuJPa5Eg?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=GPeWuJPa5Eg&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        <iframe title="HYRCAN AI Agent: Image + Text Prompt" loading="lazy" src="https://www.youtube-nocookie.com/embed/GPeWuJPa5Eg?controls=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playlist=GPeWuJPa5Eg&iv_load_policy=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                         </iframe>
                     </div>
                 </div>
@@ -1578,10 +1642,16 @@
             </div>
         </div>
     </footer>
+    <noscript>
+        <div style="padding:12px; text-align:center; background:#fff3cd; color:#1f2937;">
+            JavaScript is disabled. The site works, but some enhancements (navigation highlights, animations) are unavailable.
+        </div>
+    </noscript>
 
     <script>
         // Consolidated DOMContentLoaded event listener
         document.addEventListener('DOMContentLoaded', function() {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             // FAQ Toggle Functionality
             function toggleFAQ(element) {
                 const faqItem = element.parentElement;
@@ -1640,14 +1710,17 @@
                         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
                         window.scrollTo({
                             top: targetPosition,
-                            behavior: 'smooth'
+                            behavior: prefersReducedMotion ? 'auto' : 'smooth'
                         });
-                        navLinks.forEach(navLink => navLink.classList.remove('active'));
+                        navLinks.forEach(navLink => { navLink.classList.remove('active'); navLink.removeAttribute('aria-current'); });
                         this.classList.add('active');
+                        this.setAttribute('aria-current', 'page');
                         // Close mobile menu on link click
                         const navCenter = document.querySelector('.nav-center');
                         if (navCenter.classList.contains('active')) {
                             navCenter.classList.remove('active');
+                            const toggle = document.querySelector('.mobile-menu-toggle');
+                            if (toggle) toggle.setAttribute('aria-expanded', 'false');
                         }
                     }
                 });
@@ -1668,8 +1741,10 @@
                         const id = entry.target.getAttribute('id');
                         navLinks.forEach(link => {
                             link.classList.remove('active');
+                            link.removeAttribute('aria-current');
                             if (link.getAttribute('href') === `#${id}`) {
                                 link.classList.add('active');
+                                link.setAttribute('aria-current', 'page');
                             }
                         });
                     }
@@ -1727,7 +1802,9 @@
             const navCenter = document.querySelector('.nav-center');
             if (mobileToggle && navCenter) {
                 mobileToggle.addEventListener('click', function() {
+                    const newState = !navCenter.classList.contains('active');
                     navCenter.classList.toggle('active');
+                    mobileToggle.setAttribute('aria-expanded', newState ? 'true' : 'false');
                 });
             }
 
