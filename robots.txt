@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://geosim-ai.yaredwb.com/sitemap.xml
+Sitemap: https://yaredwb.com/GeoSimAI-CS/sitemap.xml
